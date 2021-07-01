@@ -1,0 +1,10 @@
+name: hangman
+content:
+  Introduction and the IDE: .
+  Lecture: /objects/lecture
+
+  Familiarisation:
+    Implement Queue: /objects/queue
+    Implement Game of Cards: /objects/cards
+
+  Implement Hangman: /hangman/classic
