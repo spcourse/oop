@@ -1,2 +1,3 @@
-# oop
-Object Oriented programming exercises for minor AI
+# OOP
+
+Object Oriented Programming exercises for minor AI
