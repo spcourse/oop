@@ -86,7 +86,7 @@ Your assignment is to write a computer program which plays a game of Hangman usi
 	4. Partition the words in the dictionary into groups by word family.
 
 	5. Find the most common "word family" in the remaining words, remove all words from the word list that aren't in that family, and report the position of the letters (if any) to the user. If the word family doesn't contain any copies of the letter, subtract a remaining guess from the user.
-	
+
 	6. If the player has run out of guesses, pick a word from the word list and display it as the word that the computer initially "chose."
 
 	7. If the player correctly guesses the word, congratulate her.
@@ -122,7 +122,7 @@ The first thing to implement is a class called `Lexicon`, which has the responsi
 Download the lexicons via:
 
 	cd ~/module8
-	wget https://prog2.mprog.nl/course/problems/hangman-evil/dictionaries.zip
+	wget https://github.com/spcourse/oop/raw/main/hangman/classic/dictionary.zip
 	unzip dictionaries.zip
     rm -f dictionaries.zip
 
@@ -189,7 +189,7 @@ Your code should follow the following structure. It is up to you to fill in the 
             pass
 
         def pattern(self):
-            # Return a string of the current game pattern. Use underscores in 
+            # Return a string of the current game pattern. Use underscores in
             # place of missing letters. Example: "_AN_MAN".
             pass
 
@@ -207,12 +207,12 @@ Your code should follow the following structure. It is up to you to fill in the 
             pass
 
         def won(self):
-            # Return True if the game is finished and the player has won, 
+            # Return True if the game is finished and the player has won,
             # otherwise False.
             pass
 
         def lost(self):
-            # Return True if the game is finished and the player has lost, 
+            # Return True if the game is finished and the player has lost,
             # otherwise False.
             pass
 
