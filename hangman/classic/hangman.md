@@ -27,7 +27,7 @@ In case you aren't familiar with the game Hangman, the rules are as follows:
 
 3. The game ends either when all the letters in the word have been revealed or when the guesser has run out of guesses.
 
-Fundamental to the game is the fact the first player accurately represents the word she has chosen. That way, when the other players guess letters, she can reveal whether that letter is in the word.
+Fundamental to the game is that the first player accurately represents the word she has chosen. That way, when the other players guess letters, she can reveal whether that letter is in the word.
 
 
 ## Specification
@@ -49,7 +49,7 @@ Download the word lexicon via:
     unzip dictionary.zip
     rm -f dictionary.zip
 
-Then create a file called `hangman.py` and add the following code.
+Then, create a file called `hangman.py` and add the following code.
 
     if __name__ == '__main__':
 
@@ -127,7 +127,7 @@ Because the `Hangman` class is still missing, you can't really test the `Lexicon
 
 ## Assignment 3
 
-Now you are going to analyse the `Hangman` class and define an *interface* for it.
+Now, you are going to analyse the `Hangman` class and define an *interface* for it.
 
 1. Peruse the starter code and note how the `Hangman` class is instantiated. What kind of parameters are needed to make a valid instance of `Hangman`?
 
@@ -172,15 +172,15 @@ Have a good look at what happens:
     13     raise IndexError('Cannot choose from an empty sequence') from None
     14 IndexError: Cannot choose from an empty sequence
 
-Bummer! A generic error, "Cannot choose from an empty sequence". But what is the **root cause** of our bug? It not immediately obvious from the traceback above.
+Bummer! A generic error, "Cannot choose from an empty sequence". But what is the **root cause** of our bug? It's not immediately obvious from the traceback above.
 
-What you can see on line 11 is that the crash happens in our function `get_word()` when it tries to select a random word. From the error message on line 14 you might understand that `self.words` is an `empty sequence`, or in other words, an list with no words in it.
+What you can see on line 11 is that the crash happens in our function `get_word()` when it tries to select a random word. From the error message on line 14 you might understand that `self.words` is an `empty sequence`, or in other words, a list with no words in it.
 
-But that is not the root cause! We must now ask: why was that list empty in the first place? And finally, after some back and forth, you might find that the root cause of the problem is that the class allowed itself to be instantiated with a word length of -1. You've had to take a deep dive into the code to understand that if you didn't know the answer already.
+But that is not the root cause! We must now ask: why was that list empty in the first place? And finally, after some back and forth, you might find that the root cause of the problem is that the class allowed itself to be instantiated with a word length of -1. You've had to take a deep dive into the code to understand that, if you didn't know the answer already.
 
 ### Fixing the bug
 
-Now an obvious fix is to change the main code (that we provided) to ensure that your game player enters a word length of at least 4 (or so). That might make a nicer game and is a good idea in any case. Fine!
+Now, an obvious fix is to change the main code (that we provided) to ensure that your game player enters a word length of at least 4 (or so). That might make a nicer game and is a good idea in any case. Fine!
 
 But can't we also prevent the `Lexicon` initialiser from accepting invalid word lengths? It would be much easier to debug our program when this class simply does not accept negative word lengths. And indeed, there is a thing called an **assertion** that we can use. Just add the following line to the very top of the `Lexicon` initialiser:
 
@@ -188,7 +188,7 @@ But can't we also prevent the `Lexicon` initialiser from accepting invalid word 
 
 (Note that we assume your parameter is called `word_length`, but it's fine if it is something else. Just change the assertion in that case.)
 
-Putting this simple stament in your code will make sure that Python "halts" (crashes) the program if at that point the assertion "fails", so to say. In that case the program will not even reach the point of choosing a word from an empty list:
+Putting this simple statement in your code will make sure that Python "halts" (crashes) the program if at that point the assertion "fails", so to say. In that case, the program will not even reach the point of choosing a word from an empty list:
 
       1 WELCOME TO HANGMAN ツ
       2 What length of word would you like to play with?
@@ -205,7 +205,7 @@ In sharp contrast to the error above, we are now immediately confronted with the
 
 ## Assignment 5
 
-`check50` for this problem expects that such assertions are present in your code. In particular, you should not only insert the assertion for word length but **also** handle invalid input for initialising a `Hangman` object and the `guess()` method in `Hangman`. `check50` might provide some hints as to what assertions could be made.
+For this problem, `check50` expects that such assertions are present in your code. In particular, you should not only insert the assertion for word length but **also** handle invalid input for initialising a `Hangman` object and the `guess()` method in `Hangman`. `check50` might provide some hints as to what assertions could be made.
 
 
 ## Manual testing

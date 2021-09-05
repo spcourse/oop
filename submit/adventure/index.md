@@ -2,7 +2,7 @@
 
 Here you can submit your solutions to the problems in your module. Take note:
 
-- Ensure that all programs have the right name. For example, when submitting `prime.py`, a files named `prime (1).py` or `primetest2.py` will not be accepted!
+- Ensure that all programs have the right name. For example, when submitting `prime.py`, a file named `prime (1).py` or `primetest2.py` will not be accepted!
 
 - Double-check that your programs are correct by running check50 one last time.
 
