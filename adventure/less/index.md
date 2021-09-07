@@ -31,8 +31,8 @@ That first part of the adventure "map" may look like this:
 
 You can find the full map, including a spoiler-free version, [at this website](http://www.spitenet.com/cave/), but note that you will be implementing a portion of the full map!
 
-But there is more than just navigating, at all times you can ask for `HELP` for an explanation of the game, or `LOOK` to get a detailed description of the room you are in.
-From the previous example you could see that the second time a room is entered a shorter description was shown. If we were to enter the `LOOK` command we would again see the following:
+But besides just navigating, you can ask for `HELP` for an explanation of the game at all times, or `LOOK` to get a detailed description of the room you are in.
+From the previous example you could see that the second time a room is entered, a shorter description was shown. If we were to enter the `LOOK` command, we would again see the following:
 
     > LOOK
     You are standing at the end of a road before a small brick
@@ -41,7 +41,7 @@ From the previous example you could see that the second time a room is entered a
     to the west.
     >
 
-The adventure "map" is provided in a few **data files**, that contain room names and description, and in particular, information about which rooms are connected to other rooms, and using which commands.
+The adventure "map" is provided in a few **data files** that contain room names and descriptions, and in particular, information about which rooms are connected to other rooms, and using which commands.
 
 Though Crowther originally wrote his game in Fortran, an imperative programming language that has been around since the 1950s, we will be taking a more modern approach to its implementation, using object-oriented programming (OOP). OOP is particularly suited to Adventure, because its main idea is a series of rooms that are connected. Each room will be an object, and all of these objects will point to each other.
 
@@ -107,9 +107,9 @@ Also included in your distribution is `SmallAdv.dat`, which is a bit larger and 
 
 Take a look at `adventure.py`. The file has three main components.
 
-1. The `import` statement. Instead of working from a single file, we've split our two classes into separate files, in order to keep our files relatively short and tidy. To be able to access the Room class from the `adventure.py` file, we use `import`.
+1. The `import` statement. Instead of working from a single file, we've split our two classes into separate files in order to keep our files relatively short and tidy. To be able to access the Room class from the `adventure.py` file, we use `import`.
 
-2. The biggest part of the file is the `Adventure` class, which contain all methods that make the game work.
+2. The biggest part of the file is the `Adventure` class, which contains all methods that make the game work.
 
 	- The `__init__` method ensures that all is set for playing an adventure game. In particular, it uses the other methods to load game data, build a structure of rooms, and point `current_room` to the first room in the map.
 
@@ -146,13 +146,13 @@ To store information about the connections, you will need to create a new empty 
 		"EAST": <room.Room object at 0x7f325cbc4fd0>
 	}
 
-This means that the dictionary maps a **direction** (string) to another `Room` object. This is very important! The description above means that `Room` objects will point to each other, meaning that when the game map is loaded, a [**graph**](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) is created of rooms and connections. The goal of the game is to *navigate that graph*. A graph, incidentally, is one kind of Abstract Data Type!
+This means that the dictionary maps a **direction** (string) to another `Room` object. This is very important! The description above means that `Room` objects will point to each other, meaning that when the game map is loaded, a [**graph**](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) is created of the rooms and connections. The goal of the game is to *navigate that graph*. A graph, incidentally, is one kind of Abstract Data Type!
 
 For example, if we load the **Tiny** game map, the result should be that we have 4 objects in memory, all pointing to each other:
 
 ![](tiny.png)
 
-Then you need to add three methods for managing and looking up connections:
+Then, you need to add three methods for managing and looking up connections:
 
 - `add_connection` which accepts a direction (string) and a room (another Room object), and stores those in the dictionary
 - `has_connection` which accepts a direction (string), and checks whether there is a connection in the dictionary under that name
@@ -160,7 +160,7 @@ Then you need to add three methods for managing and looking up connections:
 
 Now, implement the three methods for managing connections. You might need to read up on [dictionaries](https://docs.python.org/3/tutorial/datastructures.html#dictionaries).
 
-> A hard constraint in this program is that the `Room` class may not access (use) other classes. Its methods may only manipulate `self` and any access only objects that are passed to it as arguments to method calls.
+> A hard constraint in this program is that the `Room` class may not access (use) other classes. Its methods may only manipulate `self` and may only access any objects that are passed to it as arguments to method calls.
 
 After implementing, you should test the class by starting Python and creating `Room` objects:
 
@@ -195,7 +195,7 @@ You may have seen that it's possible to load information from a file using a `fo
 
 However, in this assignment, we can't easily use this idea, because there are several sections in the datafile and each section has a different structure.
 
-What we can do is write our own loops that read lines for one section each. We then read only a single line of the file per iteration. This is done using the `readline()` method. Here's an example for opening a file and reading two lines:
+What we can do is write our own loops that read lines for one section each. We then only read a single line of the file per iteration. This is done using the `readline()` method. Here's an example for opening a file and reading two lines:
 
     with open("TinyAdv.dat") as f:
         for i in range(2):
@@ -210,7 +210,7 @@ Important to note is that when using `readline`, the string it returns will usua
 - an empty line, for which `readline` returns just the newline character (`"\n"`)
 - the end of the file, for which `readline` returns an empty string (`""`)
 
-By making use of this particular behavior of `readline` we can parse section by section of our datafile.
+By making use of this particular behavior of `readline` we can parse our datafile section by section.
 
 ### Phase 1: creating rooms
 
@@ -247,7 +247,7 @@ You can then run `adventure.py` and make sure none of the assertions fail. (You 
 
 Because all rooms have now been created, we can read the connection data and make the actual connections between the rooms.
 
-We leave designing the loop up to you, but remember that each line starts with the room number that the connection starts from, and that each line may contain *multiple* other rooms to connect to. This is good moment to take out pen and paper and design the algorithm!
+We leave designing the loop up to you, but remember that each line starts with the room number that the connection starts from, and that each line may contain *multiple* other rooms to connect to. This is a good moment to take out pen and paper and design the algorithm!
 
 To actually connect rooms, you will have to look them up in `self.rooms` by number, and then make a connection:
 
@@ -260,33 +260,33 @@ When finished, add a few assertions that should be true after making connections
     assert self.rooms[1].has_connection("WEST")
     assert self.rooms[2].get_connection("EAST").name == "Outside building"
 
-You can again run `adventure.py` and make sure none of the assertions fail.
+You can run `adventure.py` again and make sure none of the assertions fail.
 
 
 ## Step 2: Moving around
 
-Now that we have a couple of rooms, we can start implementing the game itself. We'll start by implementing a `move` method for the `Adventure` class. This methods defines an action in the game. Then, we'll write code for the game loop, where a player can actually enter commands, after which the game loop will call upon the methods of an `Adventure` object.
+Now that we have a couple of rooms, we can start implementing the game itself. We'll start by implementing a `move` method for the `Adventure` class. This method defines an action in the game. Then, we'll write code for the game loop, where a player can actually enter commands, after which the game loop will call upon the methods of an `Adventure` object.
 
 ### Implement `move`
 
 The most basic function of this game is moving around between rooms. Remember that the `Adventure` class has a variable that keeps track of the "current room" for the game. It also has a still-empty `move` method that's supposed to set the current room to a new one.
 
-The `move` method has one parameter, `direction`, which should let you lookup (via the `current_room`) which room we're going to move on to. Just set `current_room` to that room and you're done.
+The `move` method has one parameter, `direction`, which should let you look up (via the `current_room`) which room we're going to move on to. Just set `current_room` to that room and you're done.
 
 `move` should also return a boolean `True` or `False` depending on whether the move was possible. The main program can use this result to notify the user if the move could not be performed.
 
 
 ### Prompting for commands
 
-Now check out `if __name__ == '__main__'` at the bottom of `adventure.py`. Currently, if you run `adventure.py`, you will be shown the description of the first room, you can even enter commands, but nothing will happen as you enter them.
+Now, check out `if __name__ == '__main__'` at the bottom of `adventure.py`. Currently, if you run `adventure.py`, you will be shown the description of the first room, you can even enter commands, but nothing will happen as you enter them.
 
-We're going to support a few different commands, but first of all, let's allow your use to move around in the game using directions like "IN" or "WEST".
+We're going to support a few different commands, but first of all, let's allow your user to move around in the game using directions like "IN" or "WEST".
 
 - Start by passing the entered `command` to the adventure class's `move` method.
 
-- Modify the program to display the room description after each command, so it feels like moving around in the map. (Currently a description is only printed once, at the start of the game.)
+- Modify the program to display the room description after each command, so it feels like moving around in the map. (Currently, a description is only printed once, at the start of the game.)
 
-- Following the description we'll again prompt the player for a command. The '>' will mark this prompt. It should look like this:
+- Following the description, we'll again prompt the player for a command. The '>' will mark this prompt. It should look like this:
 
 		You are standing at the end of a road before a small brick
 		building.  A small stream flows out of the building and
@@ -296,7 +296,7 @@ We're going to support a few different commands, but first of all, let's allow y
 
 - Not all users read the docs! Be sure to allow for both UPPER and lower case directions.
 
-- If the player attempts a command that cannot be executed tell them they attempted an "Invalid command." and prompt for another command using the '>'.
+- If the player attempts a command that cannot be executed, tell them they attempted an "Invalid command." and prompt for another command using the '>'.
 
 		> OUT
 		Invalid command.
@@ -335,7 +335,7 @@ As a final step for making the basic game work, we'll add a few commands that ma
 		> LOOK
 		You are inside a building, a well house for a large spring.
 
-For the latter, should implement a method `get_long_description` in `Adventure`, which will always return the long description.
+For the latter, you should implement a method `get_long_description` in `Adventure`, which will always return the long description.
 
 ## Step 5: Try a larger map
 
@@ -346,7 +346,7 @@ Before continuing, make sure your program still works if you transition from the
 
 ## Step 6: Forced movement
 
-Sometimes a player will attempt a movement they cannot make. For example, in the Small adventure, when going WEST from the "Outside grate" room (6), one finds oneself at the edge of an "unpassable stream". The only way is going back the "Outside grate" room.
+Sometimes, a player will attempt a movement they cannot make. For example, in the Small adventure, when going WEST from the "Outside grate" room (6), one finds oneself at the edge of an "impassable stream". The only way is going back the "Outside grate" room.
 
 The adventure game has a special feature called `FORCED` movements. If a player enters a room that has a direction named FORCED:
 
@@ -363,7 +363,7 @@ Implement Synonyms. Note that your adventure game does not implement all command
 
 Have a good look at the constraints we **noted earlier**:
 
-- A hard constraint in this program is that the `Room` class may not access (use) other classes. Its methods may only manipulate `self` and any access only objects that are passed to it as arguments to method calls.
+- A hard constraint in this program is that the `Room` class may not access (use) other classes. Its methods may only manipulate `self` and may only access any objects that are passed to it as arguments to method calls.
 
 - A hard constraint in this program is that the `Adventure` class may not `print` anything. And in return, the `__main__` part may, aside from printing things, only call methods in the `Adventure` class. It may not ever directly access methods and/or attributes from the `Room class`!
 

@@ -1,6 +1,6 @@
 # Game of Cards
 
-Object-oriented programming is commonly used to model real-world things, like cars or businesses, as well as their behaviors and interactions. Each class represents a "kind of thing" and bundles relevant functionality in the form of methods. In this lab, you'll model a deck of 52 playing cards.
+Object-oriented programming is commonly used to model real-world things, like cars or businesses, as well as their behaviors and interactions. Each class represents a "kind of thing" and bundles relevant functionalities in the form of methods. In this lab, you'll model a deck of 52 playing cards.
 
 ![A few playing cards for illustration](card_deck.png)
 
@@ -8,7 +8,7 @@ Object-oriented programming is commonly used to model real-world things, like ca
 
 ## Card: a data class
 
-Let's create a `Card` class first. For this lab, a `Card` is very simple *data class*: it only contains a few attributes (or "fields"), as well as the initializer method necessary to fill those.
+Let's create a `Card` class first. For this lab, a `Card` is a very simple *data class*; it only contains a few attributes (or "fields"), as well as the initializer method necessary to fill those.
 
 The attributes of a `Card` will contain the minimum of information needed to uniquely define what kind of card it is:
 
@@ -19,7 +19,7 @@ In a UML diagram, the class looks like this:
 
 ![A UML diagram of a class called Card with two attributes: one is called suit of type string, the other is called value, also of type string.](card_class.png){: style="max-width:202px;"}
 
-UML, or unified modeling language, provides us with a way to draw diagrams of how we want classes to be programmed. It is not meant to be complicated: just a box with the class name, and below that, the contents of the class. In this case the "suit" and "value" attributes are specified. Both attributes are supposed to be strings.
+UML, or unified modeling language, provides us with a way to draw diagrams of how we want classes to be programmed. It is not meant to be complicated: just a box with the class name, and below that, the contents of the class. In this case, the "suit" and "value" attributes are specified. Both attributes are supposed to be strings.
 
 **Assignment** --- Write a declaration for the `Card` class. In the editor to the right, add it to `cardgame.py`. Don't worry about putting something *in* the class; you'll write the class body in a minute!
 
@@ -50,7 +50,7 @@ Use the following syntax:
     def __init__(self, attr1, ...):
         self.attr1 = attr1
 
-In the parameter list of the `__init__` method, you define for which attributes a value has to be provided. In the method body, you set the corresponding attributes via `self`. Note that `__init__` doesn't `return` anything! It just sets attributes.
+In the parameter list of the `__init__` method, you define for which attributes a value has to be provided. In the method body, you set the corresponding attributes via `self`. Note that `__init__` doesn't `return` anything! It just sets the attributes.
 {% endspoiler %}
 
 {% next %}
@@ -129,7 +129,7 @@ As you can see, we *hardcode* the suits and values, because in our program, thes
 
 ## Deck: instantiating cards
 
-The purpose of a "deck" will be to *contain* a set of 52 cards. In Python, we choose to store these cards in a list. With the `_suits` and `_values` we defined in the previous step, there is enough information in the `Deck` class to be able to create a `Card` instance for each of 52 combinations.
+The purpose of a "deck" will be to *contain* a set of 52 cards. In Python, we choose to store these cards in a list. With the `_suits` and `_values` we defined in the previous step, there is enough information in the `Deck` class to be able to create a `Card` instance for each of the 52 combinations.
 
 **Write** code to generate all 52 `Card`s and add them to a list called `_cards`. Code to do this should be added to the end of the initializer.
 
@@ -188,7 +188,7 @@ print(numbers)
 Have a look at the [Python docs](https://docs.python.org/3/library/random.html#random.shuffle) for more information.
 {% endspoiler %}
 
-Now, with the code that you currently wrote, you can't really see if the `shuffle` method works correctly. You could test one particular property, though: after shuffling, the deck should still have 52 cards (because, unlike people, computers definitely do not lose cards during shuffling). Change your test code to shuffle the deck before printing it. Is everything still correct?
+Now, with the code that you have currently written, you can't really see if the `shuffle` method works correctly. You could test one particular property, though: after shuffling, the deck should still have 52 cards (because, unlike people, computers definitely do not lose cards during shuffling). Change your test code to shuffle the deck before printing it. Is everything still correct?
 
 {% next %}
 
@@ -196,9 +196,9 @@ Now, with the code that you currently wrote, you can't really see if the `shuffl
 
 Now that the deck may be shuffled, it should also be possible to draw cards from it.
 
-**Create** a method `deal` that removes the top card from the `cards` list and `return` it. To remove means that after calling `deal`, the number of cards in `cards` will have decreased by 1.
+**Create** a method `deal` that removes the top card from the `cards` list and `return`s it. "To remove" means that after calling `deal`, the number of cards in `cards` will have decreased by 1.
 
-Once again, it's possible to re-use standard Python functionality to remove one `Card` from `_cards`. Take a look at the docs for [Python lists](https://docs.python.org/3/tutorial/datastructures.html) and find an appropriate method to do this. Then use that method in your own `deal` method! Don't forget to actually `return` the card that you got from the deck.
+Once again, it's possible to re-use standard Python functionality to remove one `Card` from `_cards`. Take a look at the docs for [Python lists](https://docs.python.org/3/tutorial/datastructures.html) and find an appropriate method to do this. Then, use that method in your own `deal` method! Don't forget to actually `return` the card that you got from the deck.
 
 {% next %}
 
@@ -216,7 +216,7 @@ Now test the `shuffle` method! Call it in your testing code and verify that the 
 
 ## Final Checkup
 
-Your classes now should look like this:
+Your classes should now look like this:
 
 ![A UML diagram comprising the Deck and Card classes as described earlier.](overview.png){: style="max-width:454px;"}
 
@@ -246,13 +246,13 @@ If not quite the same, think about the differences and why you decided to do it 
 
 **Class** --- all of the code that defines a series of objects. You can instantiate several objects of a class, each containing separate data. For example, in the exercises, you needed 52 individual cards, each with different names. But the code for each card is the same, and defined in the `Card` class.
 
-**Attribute** or **Field** --- a value stored inside an object. The idea is that you can combine several attributes into one object. For example, you combined "suit" and "value", which together define a unique card in a deck of cards. In other word, each "card" always should have a "suit" and a "value".
+**Attribute** or **Field** --- a value stored inside an object. The idea is that you can combine several attributes into one object. For example, you combined "suit" and "value", which together define a unique card in a deck of cards. In other words, each "card" always should have a "suit" and a "value".
 
 **Self** --- if you have a python object like `card1`, you may store data inside such an object by setting `card1.value = ...`. But an object can also manipulate data from within. In that case, use the name `self` to refer to the object's attributes.
 
 **Method** --- a function that is attached to a class. The function may be "called" on each object of that class.
 
-**Initializer** --- a special method that is called when you create an instance of the class, for example: `Card()`. You can also define initializers that accept parameters, so you might call `Card("Ace", "spades")` to create a new instance and immediately fill some attributes.
+**Initializer** --- a special method that is called when you create an instance of the class, for example: `Card()`. You can also define initializers that accept parameters, so you might call `Card("Ace", "spades")` to create a new instance and immediately fill in some attributes.
 
 **Data class** --- a class that contains only attributes, with an initializer to fill those attributes when creating an instance of the class. The initializer uses `self` to store the attributes in the object.
 
