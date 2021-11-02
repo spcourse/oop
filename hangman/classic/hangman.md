@@ -180,13 +180,13 @@ But that is not the root cause! We must now ask: why was that list empty in the 
 
 ### Fixing the bug
 
-Now, an obvious fix is to change the main code (that we provided) to ensure that your game player enters a word length of at least 4 (or so). That might make a nicer game and is a good idea in any case. Fine!
+Now, an obvious fix is to change the main code (that we provided) to ensure that your game player enters a word length of at least 1 (or so). That might make a nicer game and is a good idea in any case. Fine!
 
 But can't we also prevent the `Lexicon` initialiser from accepting invalid word lengths? It would be much easier to debug our program when this class simply does not accept negative word lengths. And indeed, there is a thing called an **assertion** that we can use. Just add the following line to the very top of the `Lexicon` initialiser:
 
-    assert word_length > 0 and word_length < 44, "Invalid word length for Lexicon"
+    assert word_length > 0 and word_length < 46, "Invalid word length for Lexicon"
 
-(Note that we assume your parameter is called `word_length`, but it's fine if it is something else. Just change the assertion in that case.)
+_(Note that we assume your parameter is called `word_length`, but it's fine if it is something else. Just change the assertion in that case.)_
 
 Putting this simple statement in your code will make sure that Python "halts" (crashes) the program if at that point the assertion "fails", so to say. In that case, the program will not even reach the point of choosing a word from an empty list:
 
@@ -197,7 +197,7 @@ Putting this simple statement in your code will make sure that Python "halts" (c
       5   File "hangman.py", line 103, in <module>
       6     lexicon = Lexicon(word_length)
       7   File "hangman.py", line 20, in __init__
-      8     assert length > 0 and length < 44, "Invalid word length for Lexicon"
+      8     assert length > 0 and length < 46, "Invalid word length for Lexicon"
       9 AssertionError: Invalid word length for Lexicon
 
 In sharp contrast to the error above, we are now immediately confronted with the root cause of the crash: we tried to instantiate the `Lexicon` class with an invalid word length.
@@ -205,7 +205,9 @@ In sharp contrast to the error above, we are now immediately confronted with the
 
 ## Assignment 5
 
-For this problem, `check50` expects that such assertions are present in your code. In particular, you should not only insert the assertion for word length but **also** handle invalid input for initialising a `Hangman` object and the `guess()` method in `Hangman`. `check50` might provide some hints as to what assertions could be made.
+However, this is not the entire solution to the problem. For example, there is no word of length 41 in our dictionary. Write an assertion that checks whether the wordlength that is given to the Lexicon actually exists in the dictionary.
+
+For this problem, `check50` expects that such assertions are present in your code. In particular, you should not only insert the assertion for word length but **also** handle invalid input for initialising a `Hangman` object and the `guess()` method in `Hangman`. `check50` might provide some hints as to what other assertions should be made.
 
 
 ## Manual testing
